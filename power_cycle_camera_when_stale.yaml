@@ -14,10 +14,9 @@ blueprint:
       name: Camera Power Switch
       description: The switch to toggle for the camera to restart
       selector:
-        target:
-          entity:
-            filter:
-              - domain: binary_switch
+        entity:
+          filter:
+            - domain: binary_switch
     toggle_time:
       name: Toggle time off
       description: Time to leave the switch off, before turning back on

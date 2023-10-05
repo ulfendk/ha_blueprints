@@ -30,15 +30,15 @@ blueprint:
           unit_of_measurement: "minutes"
           mode: slider
 
-trigger:
-  - platform: state
-    entity_id: !input camera_fps_sensor
-    to: "0"
-
-action:
-  - service: switch.turn_off
-    entity_id: !input camera_power_switch
-  - delay:
-    seconds: !input toggle_time
-  - service: switch.turn_on
-    entity_id: !input camera_power_switch
+  trigger:
+    - platform: state
+      entity_id: !input camera_fps_sensor
+      to: "0"
+  
+  action:
+    - service: switch.turn_off
+      entity_id: !input camera_power_switch
+    - delay:
+      seconds: !input toggle_time
+    - service: switch.turn_on
+      entity_id: !input camera_power_switch

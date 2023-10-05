@@ -17,7 +17,7 @@ blueprint:
         target:
           entity:
             filter:
-              - domain: switch
+              - domain: binary_switch
     toggle_time:
       name: Toggle time off
       description: Time to leave the switch off, before turning back on

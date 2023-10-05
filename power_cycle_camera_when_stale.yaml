@@ -1,0 +1,44 @@
+blueprint:
+  name: Power Cycle Camera when Stale
+  description: Power cycle a camera when Frigate does not receive video
+  domain: automation
+  input:
+    camera_fps_sensor:
+      name: Camera FPS sensor
+      description: The camera to monitor
+      selector:
+        entity:
+          filter:
+            - domain: sensor
+            - unit_of_measurement: fps
+    camera_power_switch:
+      name: Camera Power Switch
+      description: The switch to toggle for the camera to restart
+      selector:
+        target:
+          entity:
+            filter:
+              - domain: switch
+    toggle_time:
+      name: Toggle time off
+      description: Time to leave the switch off, before turning back on
+      selector:
+        number:
+          min: 1
+          max: 60
+          step: 1
+          unit_of_measurement: "minutes"
+          mode: slider
+
+trigger:
+  - platform: state
+    entity_id: !input camera_fps_sensor
+    to: "0"
+
+action:
+  - service: switch.turn_off
+    entity_id: !input camera_power_switch
+  - delay:
+    seconds: !input toggle_time
+  - service: switch.turn_on
+    entity_id: !input camera_power_switch

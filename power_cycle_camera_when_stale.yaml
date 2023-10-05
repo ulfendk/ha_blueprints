@@ -20,6 +20,7 @@ blueprint:
       description: Time to leave the switch off, before turning back on
       selector:
         number:
+          default: 5
           min: 1
           max: 60
           step: 1

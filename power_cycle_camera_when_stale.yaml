@@ -35,6 +35,9 @@ action:
   - service: homeassistant.turn_off
     entity_id: !input camera_power_switch
   - delay:
-    seconds: !input toggle_time
+      hours: 0
+      minutes: 0
+      seconds: !input toggle_time
+      milliseconds: 0
   - service: homeassistant.turn_on
     entity_id: !input camera_power_switch
